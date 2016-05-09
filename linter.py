@@ -27,10 +27,10 @@ class Csharplint(Linter):
     syntax = ("c#", "unityc#")
 
     base_cmd = (
-        "mcs "
+         "\"C:/Program Files/Unity/Editor/Data/Mono/bin/gmcs.bat\" "
         " *"
         " -target:library"
-        " -out:/tmp/errorcheck.dll"
+        # " -out:/tmp/errorcheck.dll"
         #" -out:stdout" doesn't work like that
         #" sdk:3.5" # Unity uses .NET 3.5
         #" -r:./*.dll" # Recursively add all libraries within the folder of file
@@ -86,8 +86,29 @@ class Csharplint(Linter):
 
         result = self.base_cmd
 
-        extra = []
-        extra = self.get_setting("completesharp_assemblies", [])
+        extra = [
+
+                        "C:\\Program Files\\Unity\\Editor\\Data\\Managed\\UnityEngine.dll",
+
+                        "C:\\Program Files\\Unity\\Editor\\Data\\Managed\\UnityEditor.dll",
+
+                        "C:\\Program Files\\Unity\\Editor\\Data\\Mono\\lib\\mono\\unity\\UnityScript.dll",
+
+                        "C:\\Program Files\\Unity\\Editor\\Data\\Mono\\lib\\mono\\unity\\System.Core.dll",
+
+                        "C:\\Program Files\\Unity\\Editor\\Data\\Mono\\lib\\mono\\unity\\System.dll",
+
+                        "C:\\Program Files\\Unity\\Editor\\Data\\Managed\\nunit.framework.dll",
+
+                        "C:\\Program Files\\Unity\\Editor\\Data\\Mono\\lib\\mono\\unity\\mscorlib.dll",
+
+                        "C:\\Users\\Public\\Documents\\Unity Projects\\Standard Assets Example Project\\Library\\ScriptAssemblies\\Assembly-CSharp.dll",
+
+                        "C:\\Users\\Public\\Documents\\Unity Projects\\Standard Assets Example Project\\Library\\ScriptAssemblies\\Assembly-CSharp-Editor.dll",
+
+                        "C:\\Users\\Public\\Documents\\Unity Projects\\Standard Assets Example Project\\Library\\ScriptAssemblies\\Assembly-CSharp-firstpass.dll",
+
+            ]
         if len(extra) == 0:
             return result
 
